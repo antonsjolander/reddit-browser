@@ -14,30 +14,37 @@ import * as _ from 'lodash'
 })
 export class PostsComponent implements OnInit {
 
-  posts$: Object;
+  posts$: any;
+  newPosts$: any;
+  data$: any;
+
   value = sessionStorage.value;
   select = 4;
   lastId = ''
   finish = false;
   loading = false;
   error = false;
+  
+
+
 
 
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    if (!sessionStorage.value ) {this.value = 'all'}
-    console.log(this.select)
+    // if (!sessionStorage.value ) {this.value = 'all'}
+
     this.loading = true;
-    this.data.getPosts(this.value, this.select-1).subscribe(
+    this.data.getPosts(this.value, this.select-1, '').subscribe(
        response => {
         if(_.isEmpty(response)){
           this.error = true;
           console.error(this.error)
           this.loading = false;
         }else{
-          this.posts$ = response.data.children;
+          this.data$ = response
+          this.posts$ = this.data$.data.children;
           this.loading = false;
           this.error = false;
         }
@@ -46,7 +53,6 @@ export class PostsComponent implements OnInit {
   }
 
   onScroll () {
-    console.log('scrolled!!');
     this.loading = true;
     this.data.getPosts(this.value, this.select-1, this.lastId).subscribe(
       response => {
@@ -55,7 +61,9 @@ export class PostsComponent implements OnInit {
           console.error(this.error)
           this.loading = false;
         }else{
-        response.data.children.map(post => {
+          this.data$ = response
+          this.newPosts$ = this.data$.data.children
+          this.newPosts$.map(post => {
           this.posts$.push(post)
           this.loading = false;
           this.error = false;
@@ -67,14 +75,15 @@ export class PostsComponent implements OnInit {
   onChange(value: number) {
     this.select = value;
     sessionStorage.select = value;
-    this.data.getPosts(this.value, this.select-1).subscribe(
+    this.data.getPosts(this.value, this.select-1, '').subscribe(
        response => {
        if(_.isEmpty(response)){
            this.error = true;
            console.error(this.error)
            this.loading = false;
        }else{
-         this.posts$ = response.data.children;
+         this.data$ = response;
+         this.posts$ = this.data$.data.children
          this.loading = false;
          this.error = false;
        }
@@ -91,15 +100,16 @@ export class PostsComponent implements OnInit {
     this.value = value
     sessionStorage.value = value;
     this.loading = true;
-    this.data.getPosts(this.value, this.select-1).subscribe(
+    this.data.getPosts(this.value, this.select-1, '').subscribe(
       response => {
        if(_.isEmpty(response)){
          this.error = true;
          console.error(this.error)
          this.loading = false;
        }else{
-         this.posts$ = response.data.children;
-         this.lastId = _.last(response.data.children).data.id
+         this.data$ = response;
+         this.posts$ = this.data$.data.children
+         this.lastId = _.last(this.posts$).data.id
          this.loading = false;
          this.error = false;
        }

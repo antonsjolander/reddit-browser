@@ -21,6 +21,7 @@ export class DetailsComponent implements OnInit {
   display = i => i.body;
   loading = false;
 
+
   constructor(private route: ActivatedRoute, private data: DataService) {
      this.route.params.subscribe( params => {
        this.id$ = params.id
@@ -28,7 +29,7 @@ export class DetailsComponent implements OnInit {
      });
   }
 
-  comments="hej"
+  
 
   dateRender(timestamp) {
     let date = new Date(timestamp*1000);
@@ -44,8 +45,8 @@ export class DetailsComponent implements OnInit {
   //    }
   // }
   getCommentsFromArray(array) {
-    let comments = [];
-    let comment = {}
+    let comments: object[] = [];
+    var comment: {[k: string]: any} = {};
     array.forEach((item, i) => {
       if(typeof item !== 'undefined') {
         comments.push(comment = {
@@ -63,6 +64,7 @@ export class DetailsComponent implements OnInit {
 
     return comments;
   }
+
   ngOnInit() {
     this.loading = true;
     this.data.getPost(this.sub$, this.id$).subscribe(
