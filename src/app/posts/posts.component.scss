@@ -4,6 +4,8 @@ ul {
   }
 }
 
+
+
 input {
   border: none;
   background: transparent;
@@ -22,6 +24,9 @@ input {
 .select-container {
   display: flex;
   align-items: center;
+  p {
+    margin-left: 1rem;
+  }
 
 }
 

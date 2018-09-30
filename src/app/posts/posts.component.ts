@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import * as _ from 'lodash'
+
+
 
 
 @Component({
@@ -14,36 +17,55 @@ export class PostsComponent implements OnInit {
   Error$: boolean;
   value = sessionStorage.value;
   select = sessionStorage.select;
+  lastId = ''
+  finish = false;
+  loading = false;
 
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
     if (!sessionStorage.value ) {this.value = 'all'}
-    console.log(this.value)
-    this.data.getPosts(this.value, 4).subscribe(
-       response => this.posts$ = response.data.children
-    )
+    console.log(this.select)
+    this.loading = true;
+    this.data.getPosts(this.value, this.select).subscribe(
+       response => {this.posts$ = response.data.children;
+       this.loading = false;
+    })
 
+  }
+
+  onScroll () {
+    console.log('scrolled!!');
+    this.loading = true;
+    this.data.getPosts(this.value, this.select, this.lastId).subscribe(
+      response => response.data.children.map(post => {
+        this.posts$.push(post)
+        this.loading = false;
+      })
+     )
   }
 
   onChange(value: number) {
     this.select = value - 1;
     sessionStorage.select = value - 1;
-    console.log(this.select);
-    // I want to do something here for new selectedDevice, but what I
-    // got here is always last selection, not the one I just select.
+    this.data.getPosts(this.value, this.select).subscribe(
+       response => {this.posts$ = response.data.children;
+       this.loading = false;
+    })
+
   }
 
   onEnter(value: string) {
     this.value = value
     sessionStorage.value = value;
+    this.loading = true;
     this.data.getPosts(this.value, this.select).subscribe(
        (response,error) => {
-         if(error){ console.log('hoi')}
          this.posts$ = response.data.children;
-
-
+         this.lastId = _.last(response.data.children).data.id
+         console.log(this.lastId);
+         this.loading = false;
        }
     )
   }

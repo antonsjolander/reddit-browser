@@ -9,6 +9,11 @@ import { DetailsComponent } from './details/details.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BosketModule } from '@bosket/angular'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { BosketModule } from '@bosket/angular'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BosketModule
+    BosketModule,
+    InfiniteScrollModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,6 +19,7 @@ export class DetailsComponent implements OnInit {
   post$: Object;
   selection = [];
   display = i => i.body;
+  loading = false;
 
   constructor(private route: ActivatedRoute, private data: DataService) {
      this.route.params.subscribe( params => {
@@ -63,12 +64,13 @@ export class DetailsComponent implements OnInit {
     return comments;
   }
   ngOnInit() {
+    this.loading = true;
     this.data.getPost(this.sub$, this.id$).subscribe(
       data => {
         this.post$ = data[0].data.children;
         this.comments$ = data[1].data.children;
 
-
+        this.loading = false;
         this.commentsFormated$ = this.getCommentsFromArray(this.comments$)
         console.log(this.commentsFormated$)
       }

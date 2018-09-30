@@ -17,9 +17,9 @@ export class DataService {
       return this.http.get('https://www.reddit.com/r/'+ channel + '/comments/' + id + '.json');
     }
 
-    getPosts(channel, amount) {
-      return this.http.get('https://www.reddit.com/r/' + channel + '.json?limit=' + amount)
-
+    getPosts(channel, amount, lastId) {
+      return this.http.get('https://www.reddit.com/r/' + channel + '.json?limit=' + amount + '&after=' + lastId)
+       console.log('https://www.reddit.com/r/' + channel + '.json?limit=' + amount + '&after=' + lastId)
     }
 
 

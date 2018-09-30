@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
 body {
   margin:0;
   background: #f2f2f2;
@@ -6,9 +10,13 @@ body {
   height:100vh;
 }
 
+.mat-spinner {
+  margin: auto;
+}
+
 #container {
   display: grid;
-  grid-template-columns: 70px auto;
+  grid-template-columns: auto;
   height: 100%;
 
   #content {
