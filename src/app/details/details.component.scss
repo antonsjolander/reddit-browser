@@ -1,0 +1,9 @@
+ul {
+.folded {
+  color:pink;
+  &:before {
+    content: "+";
+    margin-right: 4px;
+  }
+}
+}

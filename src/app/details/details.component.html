@@ -1,0 +1,24 @@
+<ul>
+  <li *ngFor="let post of post$; index as i">
+    <!-- <div *ngIf="post.data.thumbnail">
+      <img src="{{post.data.thumbnail}}" alt="">
+    </div> -->
+    <div>
+      <p>Posted by u/{{ post.data.author }} | {{dateRender(post.data.created)}} hours ago</p>
+      <h3>{{ post.data.title }}</h3>
+
+      <p *ngIf="post.data.selftext">{{ post.data.selftext }}</p>
+      <a *ngIf="post.data.url" href="{{ post.data.url }}">{{ post.data.url }}</a>
+
+      <p>Score: {{ post.data.score }}  Comments: {{ post.data.num_comments }}</p>
+    </div>
+
+  </li>
+</ul>
+<TreeView
+    [model]="commentsFormated$"
+    category="replies"
+    [(selection)]="selection"
+    [display]="display">
+</TreeView>
+
