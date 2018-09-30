@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
           this.loading = false;
           this.lastId = _.last(this.posts$).data.name
           this.error = false;
-          console.log(this.lastId, this.posts$)
+          
 
         }
     })
@@ -116,7 +116,7 @@ export class PostsComponent implements OnInit {
          this.data$ = response;
          this.posts$ = this.data$.data.children
          this.lastId = _.last(this.posts$).data.name
-         console.log(this.lastId)
+         
          this.loading = false;
          this.error = false;
        }
