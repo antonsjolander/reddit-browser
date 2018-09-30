@@ -18,7 +18,8 @@ export class DataService {
     }
 
     getPosts(channel, amount) {
-      return this.http.get('https://www.reddit.com/r/' + channel + '.json?limit=' + amount);
+      return this.http.get('https://www.reddit.com/r/' + channel + '.json?limit=' + amount)
+
     }
 
 

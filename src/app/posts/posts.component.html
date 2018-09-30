@@ -1,5 +1,9 @@
-<h1>Posts</h1>
-<input #box (keyup.enter)="onEnter(box.value)">
+<div class="header">
+  <h1>reddit.com/r/</h1>
+  <input placeholder="{{value}}" #box (keyup.enter)="onEnter(box.value)">
+  <p><---ENTER DESIRED SUBREDDIT HERE</p>
+</div>
+
 <div class="select-container">
   <p>Results per page:</p>
   <select #result_select (change)="onChange(result_select.value)">
@@ -8,13 +12,15 @@
     <option value="25">25</option>
   </select>
 </div>
-<p>{{value}}</p>
+<div>
+  <p>You are now seeing post from <strong>{{value}}</strong></p>
+</div>
 <ul>
   <li *ngFor="let post of posts$; index as i">
-    <div *ngIf="post.data.thumbnail">
+    <div *ngIf="post.data.thumbnail" class="img-cont">
       <img src="{{post.data.thumbnail}}" alt="">
     </div>
-    <div>
+    <div class="info-cont">
       <p>Posted by <a href="">u/{{ post.data.author }}</a></p>
       <a
       routerLink="/details/{{post.data.subreddit}}/{{post.data.id}}"

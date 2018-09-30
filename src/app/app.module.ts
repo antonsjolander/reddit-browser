@@ -8,8 +8,6 @@ import { PostsComponent } from './posts/posts.component';
 import { DetailsComponent } from './details/details.component';
 
 import { HttpClientModule } from '@angular/common/http';
-
-import { CommentsComponent } from './comments/comments.component';
 import { BosketModule } from '@bosket/angular'
 
 @NgModule({
@@ -18,8 +16,6 @@ import { BosketModule } from '@bosket/angular'
     SidebarComponent,
     PostsComponent,
     DetailsComponent,
-
-    CommentsComponent
   ],
   imports: [
     BrowserModule,

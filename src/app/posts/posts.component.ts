@@ -39,7 +39,12 @@ export class PostsComponent implements OnInit {
     this.value = value
     sessionStorage.value = value;
     this.data.getPosts(this.value, this.select).subscribe(
-       response => this.posts$ = response.data.children
+       (response,error) => {
+         if(error){ console.log('hoi')}
+         this.posts$ = response.data.children;
+
+
+       }
     )
   }
 
