@@ -6,26 +6,26 @@
 
 <div class="select-container">
   <p>Results per page:</p>
-  <select #result_select (change)="onChange(result_select.value)">
+  <select id="result_select" #result_select (change)="onChange(result_select.value)">
     <option value="5">5</option>
-    <option value="10"     >10</option>
+    <option value="10">10</option>
     <option value="25">25</option>
   </select>
   <p> (scroll to load more ¯\_(ツ)_/¯ )</p>
 </div>
-<div *ngIf="error$">
+<div *ngIf="error">
+  <p>Cant find subreddit :( Try another one ;)</p>
+</div>
+<div *ngIf="!error">
   <p>You are now seeing post from <strong>{{value}}</strong></p>
 </div>
-<div *ngElse>
-  <p>You are now seeing post from <strong>{{value}}</strong></p>
-</div>
-<ul>
+<ul *ngIf="!error">
   <li *ngFor="let post of posts$ ; index as i ">
     <div *ngIf="post.data.thumbnail" class="img-cont">
       <img src="{{post.data.thumbnail}}" alt="">
     </div>
     <div class="info-cont">
-      <p>Posted by <a href="">u/{{ post.data.author }}</a></p>
+      <p>Posted by <strong>u/{{ post.data.author }}</strong> | {{dateRender(post.data.created)}} hours ago</p>
       <a
       routerLink="/details/{{post.data.subreddit}}/{{post.data.id}}"
 

@@ -15,8 +15,7 @@ body {
 }
 
 #container {
-  display: grid;
-  grid-template-columns: auto;
+
   height: 100%;
 
   #content {
@@ -27,6 +26,7 @@ body {
       margin: 0;
       padding: 0;
       .category {
+          cursor: pointer;
           &:before {
             display:inline-block;
             font-size: 20px;

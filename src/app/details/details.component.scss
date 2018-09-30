@@ -1,9 +1,7 @@
-ul {
-.folded {
-  color:pink;
-  &:before {
-    content: "+";
-    margin-right: 4px;
+.Treeview {
+  ul{
+    li {
+      cursor: pointer;
+    }
   }
-}
 }

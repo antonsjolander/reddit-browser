@@ -15,12 +15,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     PostsComponent,
     DetailsComponent,
+
   ],
   imports: [
     BrowserModule,
