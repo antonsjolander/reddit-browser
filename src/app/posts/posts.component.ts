@@ -33,7 +33,7 @@ export class PostsComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    // if (!sessionStorage.value ) {this.value = 'all'}
+    if (!sessionStorage.value ) {this.value = 'all'}
 
     this.loading = true;
     this.data.getPosts(this.value, this.select-1, '').subscribe(
