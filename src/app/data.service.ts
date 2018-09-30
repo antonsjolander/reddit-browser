@@ -24,15 +24,17 @@ export class DataService {
     }
 
     getPosts(channel, amount, lastId) {
+      console.log('https://www.reddit.com/r/' + channel + '.json?limit=' + amount + '&after=' + lastId)
       return this.http.get('https://www.reddit.com/r/' + channel + '.json?limit=' + amount + '&after=' + lastId)
       .pipe(
          map(data => {
            return data;
+           
          }),
          catchError(error => of([]))
       );
 
-       console.log('https://www.reddit.com/r/' + channel + '.json?limit=' + amount + '&after=' + lastId)
+       
 
     }
 
