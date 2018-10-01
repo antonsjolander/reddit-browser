@@ -19,7 +19,7 @@ export class PostsComponent implements OnInit {
   data$: any;
 
   value = sessionStorage.value;
-  select = 4;
+  select = 5;
   lastId = ''
   finish = false;
   loading = false;
