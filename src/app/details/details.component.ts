@@ -18,9 +18,10 @@ export class DetailsComponent implements OnInit {
   commentsFormated$: Object;
   post$: Object;
   selection = [];
-  display = i => i.body;
+  display = i =>  {return '(' + i.author + '): ' + i.body } ;
   loading = false;
 
+  
 
   constructor(private route: ActivatedRoute, private data: DataService) {
      this.route.params.subscribe( params => {
@@ -36,14 +37,6 @@ export class DetailsComponent implements OnInit {
     return date.getHours();
   }
 
-  // commentRender(object) {
-  //    for(let propName in object) {
-  //      if(object[propName].data.hasOwnProperty(propName)) {
-  //        console.log(object[propName])
-  //      }
-  //      console.log(object[propName].data.replies)
-  //    }
-  // }
   getCommentsFromArray(array) {
     let comments: object[] = [];
     var comment: {[k: string]: any} = {};
