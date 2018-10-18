@@ -4,7 +4,11 @@ ul {
   }
 }
 
-
+h1 {
+  @media (max-width:720px) {
+    font-size: 1.5rem;
+  }
+}
 
 input {
   border: none;
@@ -16,7 +20,12 @@ input {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+  width:100%;
+  @media (max-width:720px) {
+    font-size: 1.5rem;
+  }
 }
+
   *:focus {
     outline: none;
 }
@@ -33,11 +42,21 @@ input {
 .header {
   display: flex;
   align-items: center;
+  
 }
 
 .img-cont {
   display: flex;
   align-items: center;
+  img {
+    width:100%;
+    height:auto;
+    min-width:100px;
+  }
+  @media (max-width:720px) {
+    max-width: 150px;
+    align-items: flex-start;
+  }
 }
 
 .info-cont {
